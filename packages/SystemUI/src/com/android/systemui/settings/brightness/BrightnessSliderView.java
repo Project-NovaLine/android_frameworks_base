@@ -26,6 +26,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
@@ -43,6 +44,7 @@ import java.util.Collections;
 public class BrightnessSliderView extends LinearLayout {
 
     @NonNull
+    private TextView mPercentageView;
     protected ToggleSeekBar mSlider;
     private DispatchTouchEventListener mListener;
     private Gefingerpoken mOnInterceptListener;
@@ -72,6 +74,9 @@ public class BrightnessSliderView extends LinearLayout {
         mSlider = requireViewById(R.id.slider);
         mSlider.setAccessibilityLabel(getContentDescription().toString());
         setBoundaryOffset();
+
+        mPercentageView = requireViewById(R.id.brightness_percentage);
+        setPercentage(getValue());
 
         // Finds the progress drawable. Assumes brightness_progress_drawable.xml
         try {
@@ -103,6 +108,13 @@ public class BrightnessSliderView extends LinearLayout {
     public void setOnDispatchTouchEventListener(
             DispatchTouchEventListener listener) {
         mListener = listener;
+    }
+
+    public void setPercentage(int value) {
+        if (mPercentageView != null) {
+            int percentage = value * 100 / getMax();
+            mPercentageView.setText(String.valueOf(percentage) + "%");
+        }
     }
 
     @Override
