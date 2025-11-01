@@ -7269,11 +7269,6 @@ public final class Settings {
         public static final String QS_TRANSPARENCY = "qs_transparency";
 
         /**
-         * @hide
-         */
-        public static final String ISLAND_NOTIFICATION = "island_notification";
-
-        /**
          * Whether to enable charge battery warning
          * @hide
          */
