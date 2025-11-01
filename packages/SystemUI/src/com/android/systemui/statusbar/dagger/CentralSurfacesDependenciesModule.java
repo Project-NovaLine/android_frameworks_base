@@ -36,7 +36,6 @@ import com.android.systemui.dump.DumpHandler;
 import com.android.systemui.dump.DumpManager;
 import com.android.systemui.media.NotificationMediaManager;
 import com.android.systemui.media.controls.domain.pipeline.MediaDataManager;
-import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.power.domain.interactor.PowerInteractor;
 import com.android.systemui.scene.shared.flag.SceneContainerFlag;
 import com.android.systemui.settings.DisplayTracker;
@@ -63,7 +62,6 @@ import com.android.systemui.statusbar.phone.ui.StatusBarIconController;
 import com.android.systemui.statusbar.phone.ui.StatusBarIconControllerImpl;
 import com.android.systemui.statusbar.phone.ui.StatusBarIconList;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
-import com.android.systemui.tuner.TunerService;
 import com.android.wm.shell.shared.ShellTransitions;
 
 import dagger.Binds;
@@ -104,9 +102,7 @@ public interface CentralSurfacesDependenciesModule {
             DumpManager dumpManager,
             @Background Executor backgroundExecutor,
             SysuiColorExtractor colorExtractor,
-            @Main Handler handler,
-            StatusBarStateController statusBarStateController,
-            TunerService tunerService) {
+            @Main Handler handler) {
         return new NotificationMediaManager(
                 context,
                 visibilityProvider,
@@ -116,9 +112,7 @@ public interface CentralSurfacesDependenciesModule {
                 dumpManager,
                 backgroundExecutor,
                 colorExtractor,
-                handler,
-                statusBarStateController,
-                tunerService);
+                handler);
     }
 
     /** */
